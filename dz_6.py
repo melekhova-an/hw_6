@@ -90,7 +90,7 @@ def test_readable_function():
 def open_browser(browser_name):
     actual_result = None
     fnc_name = open_browser.__name__
-    actual_result = f'{fnc_name} [{browser_name}]'
+    actual_result = (f'{fnc_name} [{browser_name}]').capitalize()
     return actual_result
 
     assert actual_result == "Open Browser [Chrome]"
@@ -98,7 +98,7 @@ def open_browser(browser_name):
 def go_to_companyname_homepage(page_url):
     actual_result = None
     fnc_name = go_to_companyname_homepage.__name__
-    actual_result = f'{fnc_name} [{page_url}]'
+    actual_result = (f'{fnc_name} [{page_url}]').capitalize()
     return actual_result
 
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
@@ -106,7 +106,7 @@ def go_to_companyname_homepage(page_url):
 def find_registration_button_on_login_page(page_url, button_text):
     actual_result = None
     fnc_name = find_registration_button_on_login_page.__name__
-    actual_result = f'{fnc_name} [{page_url}, {button_text}]'
+    actual_result = (f'{fnc_name} [{page_url}, {button_text}]').capitalize()
     return actual_result
 
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
