@@ -9,9 +9,9 @@ def test_dark_theme_by_time():
     is_dark_theme = None
 
     if 22 <= current_time.hour >= 6:
-        return is_dark_theme is False
+        is_dark_theme = True
     else:
-        return is_dark_theme is True
+        is_dark_theme = False
 
     assert is_dark_theme is True
 
@@ -29,13 +29,13 @@ def test_dark_theme_by_time_and_user_choice():
     #  но учтите что темная тема может быть включена вручную
     is_dark_theme = None
 
-    if is_dark_theme != None:
-        return is_dark_theme
+    if dark_theme_enabled_by_user is True:
+        is_dark_theme = True
 
     elif 22 <= current_time.hour >= 6:
-        return is_dark_theme is False
+        is_dark_theme = True
     else:
-        return is_dark_theme is True
+        is_dark_theme = False
 
     assert is_dark_theme is True
 
@@ -53,19 +53,17 @@ def test_find_suitable_user():
     # TODO найдите пользователя с именем "Olga"
     suitable_users = None
     for i in users:
-        if 'name' in i == 'Olga':
+        if i['name'] == 'Olga':
             suitable_users = i
-        return suitable_users
 
     assert suitable_users == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
-    suitable_users = None
+    suitable_users = []
 
     for i in users:
-        if 'age' in i < 20:
-            suitable_users += i
-        return suitable_users
+        if i['age'] < 20:
+            suitable_users.append(i)
 
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
@@ -89,24 +87,21 @@ def test_readable_function():
 
 def open_browser(browser_name):
     actual_result = None
-    fnc_name = open_browser.__name__
-    actual_result = (f'{fnc_name} [{browser_name}]').capitalize()
-    return actual_result
+    fnc_name = open_browser.__name__.replace('_', ' ').title()
+    actual_result = (f'{fnc_name} [{browser_name}]')
 
     assert actual_result == "Open Browser [Chrome]"
 
 def go_to_companyname_homepage(page_url):
     actual_result = None
-    fnc_name = go_to_companyname_homepage.__name__
-    actual_result = (f'{fnc_name} [{page_url}]').capitalize()
-    return actual_result
+    fnc_name = go_to_companyname_homepage.__name__.replace('_', ' ').title()
+    actual_result = (f'{fnc_name} [{page_url}]')
 
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 def find_registration_button_on_login_page(page_url, button_text):
     actual_result = None
-    fnc_name = find_registration_button_on_login_page.__name__
-    actual_result = (f'{fnc_name} [{page_url}, {button_text}]').capitalize()
-    return actual_result
+    fnc_name = find_registration_button_on_login_page.__name__.replace('_', ' ').title()
+    actual_result = (f'{fnc_name} [{page_url}, {button_text}]')
 
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
