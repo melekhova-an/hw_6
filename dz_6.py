@@ -29,10 +29,7 @@ def test_dark_theme_by_time_and_user_choice():
     #  но учтите что темная тема может быть включена вручную
     is_dark_theme = None
 
-    if dark_theme_enabled_by_user is True:
-        is_dark_theme = True
-
-    elif 22 <= current_time.hour >= 6:
+    if dark_theme_enabled_by_user is True or 22 <= current_time.hour <= 6:
         is_dark_theme = True
     else:
         is_dark_theme = False
