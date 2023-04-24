@@ -29,10 +29,10 @@ def test_dark_theme_by_time_and_user_choice():
     #  но учтите что темная тема может быть включена вручную
     is_dark_theme = None
 
-    if dark_theme_enabled_by_user is True or 22 <= current_time.hour or current_time.hour <= 6:
-        is_dark_theme = True
-    else:
+    if dark_theme_enabled_by_user is False and 22 <= current_time.hour or current_time.hour <= 6:
         is_dark_theme = False
+    elif dark_theme_enabled_by_user is True or 22 <= current_time.hour or current_time.hour <= 6:
+        is_dark_theme = True
 
     assert is_dark_theme is True
 
@@ -82,23 +82,21 @@ def test_readable_function():
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
+def function_name(func, *args):
+    fnc_name = func.__name__.replace('_', ' ').title() + f" [{', '.join(args)}]"
+    return fnc_name
+
 def open_browser(browser_name):
-    actual_result = None
-    fnc_name = open_browser.__name__.replace('_', ' ').title()
-    actual_result = (f'{fnc_name} [{browser_name}]')
+    actual_result = function_name(open_browser, browser_name)
 
     assert actual_result == "Open Browser [Chrome]"
 
 def go_to_companyname_homepage(page_url):
-    actual_result = None
-    fnc_name = go_to_companyname_homepage.__name__.replace('_', ' ').title()
-    actual_result = (f'{fnc_name} [{page_url}]')
+    actual_result = function_name(go_to_companyname_homepage, page_url)
 
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = None
-    fnc_name = find_registration_button_on_login_page.__name__.replace('_', ' ').title()
-    actual_result = (f'{fnc_name} [{page_url}, {button_text}]')
+    actual_result = function_name(find_registration_button_on_login_page, page_url, button_text)
 
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
